@@ -84,7 +84,7 @@
             //xhr.addEventListener('abort', function(){});
 
             xhr.upload.addEventListener('progress', $.proxy(this.progress, this));
-            
+
             xhr.open(form.attr('method'), window.location.href);
             xhr.setRequestHeader('X-REQUESTED-WITH', 'XMLHttpRequest');
 
@@ -98,10 +98,14 @@
                 return this.error(xhr);
             }
             this.set_progress(100);
-            var url = this.options.redirect_url;
-            if(!url){
+            var url;
+            var content_type = xhr.getResponseHeader('Content-Type');
+            if(content_type.indexOf('application/json') !== -1){
                 var response = $.parseJSON(xhr.responseText);
                 url = response.location;
+            }
+            else{
+                url = this.options.redirect_url;
             }
             window.location.href = url;
         },
@@ -121,11 +125,11 @@
 
             // Replace the contents of the form, with the returned html
             else if(content_type.indexOf('text/html') !== -1){
-                var new_html = $.parseHTML(xhr.responseText);                
+                var new_html = $.parseHTML(xhr.responseText);
                 this.replace_form(new_html);
                 this.$modal.modal('hide');
             }
-                
+
             else{
                 document.write('<pre>' + xhr.responseText + '<pre>');
             }
@@ -172,6 +176,7 @@
     $.fn.fileprogress.defaults = {
         template: template,
         redirect_url: '/'
+
         // need to customize stuff? Add here, and change code accordingly.
     };
 
