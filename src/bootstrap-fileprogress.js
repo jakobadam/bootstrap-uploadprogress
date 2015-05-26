@@ -84,7 +84,7 @@
             //xhr.addEventListener('abort', function(){});
 
             xhr.upload.addEventListener('progress', $.proxy(this.progress, this));
-
+            
             xhr.open(form.attr('method'), window.location.href);
             xhr.setRequestHeader('X-REQUESTED-WITH', 'XMLHttpRequest');
 
@@ -100,6 +100,9 @@
             this.set_progress(100);
             var url;
             var content_type = xhr.getResponseHeader('Content-Type');
+
+            // make it possible to return the redirect URL in
+            // a JSON response
             if(content_type.indexOf('application/json') !== -1){
                 var response = $.parseJSON(xhr.responseText);
                 url = response.location;
@@ -107,10 +110,13 @@
             else{
                 url = this.options.redirect_url;
             }
-            window.location.href = url;
+            window.location.href = url;            
         },
 
+        // handle form error
+        // we replace the form with the returned one
         error: function(xhr){
+            
             this.$modal_title.text('Upload failed');
 
             this.$modal_bar.removeClass('progress-bar-success');
@@ -119,17 +125,12 @@
 
             var content_type = xhr.getResponseHeader('Content-Type');
 
-            if(content_type.indexOf('application/json') !== -1){
-                // maybe do something
-            }
-
             // Replace the contents of the form, with the returned html
-            else if(content_type.indexOf('text/html') !== -1){
-                var new_html = $.parseHTML(xhr.responseText);
+            if(xhr.status === 422){
+                var new_html = $.parseHTML(xhr.responseText);      
                 this.replace_form(new_html);
                 this.$modal.modal('hide');
             }
-
             else{
                 document.write('<pre>' + xhr.responseText + '<pre>');
             }
@@ -174,9 +175,9 @@
     };
 
     $.fn.fileprogress.defaults = {
-        template: template,
-        redirect_url: '/'
-
+        template: template
+        //redirect_url: ...
+        
         // need to customize stuff? Add here, and change code accordingly.
     };
 
