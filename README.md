@@ -12,5 +12,5 @@ Have a bug or a feature request? [Please open a new issue](https://github.com/ja
 
 ## Copyright and license
 
-Bootstrap FileProgress is an open source project, sponsored by Origo
-Systems A/S, and released under terms of the MIT Licence.
+Bootstrap FileProgress is an open source project, sponsored by [Origo
+Systems A/S](https://origo.io), and released under terms of the MIT Licence.
