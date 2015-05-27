@@ -64,6 +64,9 @@
             this.$modal_footer.hide();
             this.$modal_bar.addClass('progress-bar-success');
             this.$modal_bar.removeClass('progress-bar-danger');
+            if(this.xhr){
+                this.xhr.abort();
+            }
         },
 
         submit: function(e) {
@@ -78,13 +81,14 @@
 
             // We need the native XMLHttpRequest for the progress event
             var xhr = new XMLHttpRequest();
+            this.xhr = xhr;
 
             xhr.addEventListener('load', $.proxy(this.success, this, xhr));
             xhr.addEventListener('error', $.proxy(this.error, this, xhr));
             //xhr.addEventListener('abort', function(){});
 
             xhr.upload.addEventListener('progress', $.proxy(this.progress, this));
-            
+
             xhr.open(form.attr('method'), window.location.href);
             xhr.setRequestHeader('X-REQUESTED-WITH', 'XMLHttpRequest');
 
@@ -110,13 +114,12 @@
             else{
                 url = this.options.redirect_url;
             }
-            window.location.href = url;            
+            window.location.href = url;
         },
 
         // handle form error
         // we replace the form with the returned one
         error: function(xhr){
-            
             this.$modal_title.text('Upload failed');
 
             this.$modal_bar.removeClass('progress-bar-success');
@@ -127,12 +130,17 @@
 
             // Replace the contents of the form, with the returned html
             if(xhr.status === 422){
-                var new_html = $.parseHTML(xhr.responseText);      
+                var new_html = $.parseHTML(xhr.responseText);
                 this.replace_form(new_html);
                 this.$modal.modal('hide');
             }
+            // Write the error response to the document.
             else{
-                document.write('<pre>' + xhr.responseText + '<pre>');
+                var response_text = xhr.responseText;
+                if(content_type.indexOf('text/plain') !== -1){
+                    response_text = '<pre>' + response_text + '</pre>';
+                }
+                document.write(xhr.responseText);
             }
         },
 
@@ -177,7 +185,7 @@
     $.fn.fileprogress.defaults = {
         template: template
         //redirect_url: ...
-        
+
         // need to customize stuff? Add here, and change code accordingly.
     };
 
