@@ -1,7 +1,7 @@
 # [Bootstrap FileProgress](https://github.com/bootstrap-fileprogress/)
 
-Bootstrap FileProgress is a simple plugin to add an upload progress bar
-to forms that upload files.
+Bootstrap FileProgress is a simple plugin that adds an upload progress bar to forms that upload files. This improves
+on most browsers that lack any progress indication of uploads.
 
 ## Getting Started, Documentation and Examples
 http://blog.aarhusworks.com/bootstrap-fileprogress/
