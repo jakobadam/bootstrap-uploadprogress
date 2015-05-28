@@ -70,8 +70,6 @@
         },
 
         submit: function(e) {
-            var form = this.$form;
-            var _this = this;
             e.preventDefault();
 
             this.$modal.modal({
@@ -89,6 +87,8 @@
 
             xhr.upload.addEventListener('progress', $.proxy(this.progress, this));
 
+            var form = this.$form;
+            
             xhr.open(form.attr('method'), window.location.href);
             xhr.setRequestHeader('X-REQUESTED-WITH', 'XMLHttpRequest');
 
