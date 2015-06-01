@@ -1,12 +1,12 @@
 {
-	"name": "bootstrap-fileprogress",
+	"name": "bootstrap-uploadprogress",
 	"title": "Bootstrap progressbar on input file",
 	"version": "v1.0.0",
-	"description": "jQuery FileProgress for Bootstrap - Progressbar for forms with file inputs",
+	"description": "jQuery Uploadprogress for Bootstrap - Progressbar for forms with file inputs",
 	"keywords": ["jquery", "file", "upload", "boostrap", "multiple", "input"],
-	"homepage": "http://aarhusworks.com/bootstrap-fileprogress/",
+	"homepage": "http://aarhusworks.com/bootstrap-uploadprogress/",
 	"demo": "",
-	"bugs": "https://github.com/jakobadam/bootstrap-fileprogress/issues",
+	"bugs": "https://github.com/jakobadam/bootstrap-uploadprogress/issues",
 	"author": {
 		"name": "Jakob Aarøe Dam",
 		"url": "https://github.com/jakobadam"
@@ -19,7 +19,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/jakobadam/bootstrap-fileprogress"
+		"url": "https://github.com/jakobadam/bootstrap-uploadprogress"
 	},
 	"licenses": [
 		{

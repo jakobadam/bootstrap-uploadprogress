@@ -30,11 +30,11 @@
 
 {% block scripts %}
 <script src="{% static 'bootstrap-filestyle/src/bootstrap-filestyle.js' %}"></script>
-<script src="{% static 'bootstrap-fileprogress/src/bootstrap-fileprogress.js' %}"></script>
+<script src="{% static 'bootstrap-uploadprogress/src/bootstrap-uploadprogress.js' %}"></script>
 
 <script>
   $(":file").filestyle({buttonBefore: true});
-  $("form").fileprogress({
+  $("form").uploadprogress({
     redirect_url: "{% url 'package_list' %}"
   });
 </script>

@@ -92,7 +92,7 @@ BOWER_INSTALLED_APPS = (
     'html5shiv',
     'respond',
     'bootstrap-filestyle',
-    # 'bootstrap-fileprogress' # Use this in production.
+    # 'bootstrap-uploadprogress' # Use this in production.
 )
 
 STATICFILES_FINDERS = (
@@ -101,7 +101,7 @@ STATICFILES_FINDERS = (
     'djangobower.finders.BowerFinder',
     )
 
-# For bootstrap-fileprogress.js
+# For bootstrap-uploadprogress.js
 STATICFILES_DIRS = (
     "../..",
 )

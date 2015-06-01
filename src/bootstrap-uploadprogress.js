@@ -1,6 +1,6 @@
 /*
- * bootstrap-fileprogress
- * github: https://github.com/jakobadam/bootstrap-fileprogress
+ * bootstrap-uploadprogress
+ * github: https://github.com/jakobadam/bootstrap-uploadprogress
  *
  * Copyright (c) 2015 Jakob Aarøe Dam
  * Version 1.0.0
@@ -40,12 +40,12 @@
   </div>\
 </div>';
 
-    var FileProgress = function(element, options){
+    var Uploadprogress = function(element, options){
         this.options = options;
         this.$element = $(element);
     };
 
-    FileProgress.prototype = {
+    Uploadprogress.prototype = {
 
         constructor: function() {
             this.$form = this.$element;
@@ -174,15 +174,15 @@
         }
     };
 
-    $.fn.fileprogress = function(options, value){
+    $.fn.uploadprogress = function(options, value){
         return this.each(function(){
-            var _options = $.extend({}, $.fn.fileprogress.defaults, options);
-            var file_progress = new FileProgress(this, _options);
+            var _options = $.extend({}, $.fn.uploadprogress.defaults, options);
+            var file_progress = new Uploadprogress(this, _options);
             file_progress.constructor();
         });
     };
 
-    $.fn.fileprogress.defaults = {
+    $.fn.uploadprogress.defaults = {
         template: template
         //redirect_url: ...
 
