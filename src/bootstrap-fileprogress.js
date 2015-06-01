@@ -48,7 +48,7 @@
     FileProgress.prototype = {
 
         constructor: function() {
-            this.$form = this.$element.parents('form');
+            this.$form = this.$element;
             this.$form.on('submit', $.proxy(this.submit, this));
             this.$modal = $(this.options.template);
             this.$modal_message = this.$modal.find('.modal-message');
