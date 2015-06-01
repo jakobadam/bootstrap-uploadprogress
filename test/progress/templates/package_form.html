@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block page_title%}Upload Software Package{% endblock %}
+
+{% block body %}
+<div class="col-xs-12">
+
+  <h3 style="margin-top:0">{% if object.id %}Update {{object}}{% else %}Upload Package{% endif %}</h3>
+
+  <div>
+    <form role="form" enctype="multipart/form-data" method="POST" id="upload-form">
+      {% csrf_token %}
+
+      {{form|crispy}}
+
+      <button type="submit"
+              class="btn btn-primary btn-block">{% if object.id %}Update{% else %}Upload{% endif %}
+        <span class="glyphicon glyphicon-upload"></span>
+      </button>
+
+    </form>
+  </div>
+
+  <small><a href="{% url 'package_list' %}"><span class="fui-arrow-left"></span>Cancel</a></small>
+</div>
+{% endblock%}
+
+{% block scripts %}
+<script src="{% static 'bootstrap-filestyle/src/bootstrap-filestyle.js' %}"></script>
+<script src="{% static 'bootstrap-fileprogress/src/bootstrap-fileprogress.js' %}"></script>
+
+<script>
+  $(":file").filestyle({buttonBefore: true});
+  $("form").fileprogress({
+    redirect_url: "{% url 'package_list' %}"
+  });
+</script>
+{% endblock %}

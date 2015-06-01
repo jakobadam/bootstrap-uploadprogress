@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title%}Packages{% endblock %}
+
+{% block body %}
+<div class="col-xs-12">
+
+  <h1>Packages</h1>
+
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Size</th>
+          <th class="text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for package in packages %}
+        <tr>
+          <td><a href="{% url 'package_edit' pk=package.id %}">{{package.name}}</a></td>
+          <td>{{package.file.size|filesizeformat}}</td>
+          <td class="text-right">
+            <form method="POST" action="{% url 'package_delete' pk=package.id %}" 
+                  data-toggle="confirm"
+                  style="display:inline-block">
+              {% csrf_token %}
+
+              <button type="submit" title="Remove {{fp}}"
+                      class="btn btn-danger btn-xs">
+                <span class="glyphicon glyphicon-trash"></span></button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+
+  </div>
+
+  <div class="well">
+    <a href="{% url 'package_add'%}">upload package</a>
+  </div>
+
+</div>
+
+{% endblock %}
+
+<!-- confirm example -->
+<!-- <script src="{% static 'bootstrap-fileprogress/src/bootstrap-formconfirm.js' %}"></script> -->
+<!-- <script> -->
+<!-- $(document).ready(function(){ -->
+<!--   $('[data-toggle="confirm"]').formconfirm(); -->
+<!-- }); -->
+<!-- </script> -->
+
