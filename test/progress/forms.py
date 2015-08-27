@@ -8,6 +8,7 @@ def _get_widget(placeholder):
 class PackageForm(forms.ModelForm):
 
     class Meta:
+        exclude = []
         model = Package
         widgets = {
             'name': _get_widget('Enter package name')
