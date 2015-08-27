@@ -1,2 +1,4 @@
 test/components
 test/upload
+*.pyc
+db.sqlite3
