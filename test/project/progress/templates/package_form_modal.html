@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block page_title%}Upload Software Package{% endblock %}
+
+{% block body %}
+<div class="col-xs-12">
+
+  <h2 style="margin-top:0">{% if object.id %}Update {{object}}{% else %}Upload Package{% endif %}</h2>
+
+  <h3>Example: form inside modal</h3>
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".modal">Popup modal</button>
+
+  <div class="modal fade" id="form-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Uploading</h4>
+        </div>
+        <div class="modal-body">
+          <div class="modal-message"></div>
+
+          <form role="form" enctype="multipart/form-data" method="POST" id="upload-form-modal">
+            {% csrf_token %}
+
+            {{form|crispy}}
+
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0"
+                   aria-valuemax="100" style="width: 0%;min-width: 2em;">
+                0%
+              </div>
+            </div>
+
+            <button type="submit"
+                    class="btn btn-primary btn-block">{% if object.id %}Update{% else %}Upload{% endif %}
+              <span class="glyphicon glyphicon-upload"></span>
+            </button>
+
+          </form>
+
+        </div>
+        <div class="modal-footer" style="display:none">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock%}
+
+{% block scripts %}
+<script src="{% static 'bootstrap-filestyle/src/bootstrap-filestyle.js' %}"></script>
+<script src="{% static 'bootstrap-uploadprogress/src/bootstrap-uploadprogress.js' %}"></script>
+
+<script>
+  // a nicer file picker button
+  $(":file").filestyle({buttonBefore: true});
+
+  $("#upload-form").uploadprogress({
+    redirect_url: "{% url 'package_list' %}"
+  });
+
+  $("#upload-form-modal").uploadprogress({
+    redirect_url: "{% url 'package_list' %}",
+    template: $("#form-modal")
+  });
+
+</script>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block page_title%}{% endblock %} | {% block site_title%}{% endblock %}</title>
+
+    <link href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <link rel="shortcut icon" href="{{STATIC_URL}}favicon.png">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="{% static 'html5shiv/dist/html5shiv.min.js' %}"></script>
+        <script src="{% static 'respond/dest/respond.min.js' %}"></script>
+    <![endif]-->
+    <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+
+    {% block base_head %}{% endblock %}
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+
+    <div class="container">
+
+      <div class="row">
+      {% for message in messages %}
+        <div class="alert 
+        {% if message.level == 40 %}alert-danger{% endif %}
+        {% if message.level == 20 %}alert-info{% endif %}
+        {% if message.level == 25 %}alert-success{% endif %}">
+          {{ message | safe }}
+        </div>
+      {% endfor %}
+      </div>
+
+      <div class="row">
+	{% block body %}{% endblock %}
+      </div>
+    </div>
+
+    <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+    {% block scripts %}{% endblock %}
+
+  </body>
+</html>

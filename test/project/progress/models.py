@@ -20,4 +20,3 @@ class Package(models.Model):
     file = models.FileField(
         verbose_name='File'
     )
-
