@@ -4,7 +4,7 @@ Bootstrap UploadProgress is a simple plugin that adds an upload progress bar to 
 on most browsers that lack any progress indication of uploads.
 
 ## Getting Started, Documentation and Examples
-http://blog.aarhusworks.com/bootstrap-uploadprogress/
+https://aarhusworks.com/2015/05/27/bootstrap-uploadprogress.html
 
 ## Bug tracker
 
