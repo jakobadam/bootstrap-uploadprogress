@@ -167,9 +167,15 @@
             else{
                 new_form = $(html).find('form');
             }
+            
+            try{
+                // try and add filestyle if library exists
+                new_form.find(':file').filestyle({buttonBefore: true});
+            }
+            catch(error){
+                console.error(error)
+            }
 
-            // add the filestyle again
-            new_form.find(':file').filestyle({buttonBefore: true});
             this.$form.html(new_form.children());
         }
     };
