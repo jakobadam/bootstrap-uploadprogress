@@ -1,6 +1,6 @@
 from django import forms
 
-from models import Package
+from .models import Package
 
 def _get_widget(placeholder):
     return forms.TextInput(attrs={'placeholder':placeholder})
